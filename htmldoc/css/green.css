@@ -1,0 +1,24 @@
+A {
+	COLOR: #060; TEXT-DECORATION: underline
+}
+A:hover {
+	COLOR: white; BACKGROUND-COLOR: #060
+}
+DIV#main H3 {
+	BACKGROUND-COLOR: #dfd
+}
+DIV#local H3 {
+	BACKGROUND-COLOR: #dfd
+}
+DIV.post_actions {
+	BACKGROUND-COLOR: #dfd
+}
+DIV.crumbs {
+	BACKGROUND-COLOR: #dfd
+}
+TR.mouse_over {
+	BACKGROUND-COLOR: #dfd
+}
+DIV.main DIV.nav SPAN {
+	BACKGROUND-COLOR: #dfd
+}
