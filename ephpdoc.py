@@ -12,27 +12,25 @@ import ephpdoclib
 ''' 
   #getCurrentPathFilenameList('','')
 if '__main__' == __name__:
-  try:
-    cruentpath=ephpdoclib.folder().getCurrentPath() 
-    gettext.install('lang', cruentpath+'\locale', unicode=False)
-    gettext.translation('lang', cruentpath+'\language', languages=['zh-CN']).install(True)
-    print _('Current Version is')+'0.0.1!'
-    print _('Ephpdoc is tool for php that is the function of the PHP inside comments compiled into an HTML document.') 
-
-    '''
-    fo=ephpdoclib.folder()
-    for item in  fo.dir_list_allfolder(os.getcwd()):
-      print item
-    '''
-    cli=ephpdoclib.cli()
-    #print cli.opt.foldername
-    ephpdocfile=ephpdoclib.ephpdocfile()
-    ephpdocfile.openFile(".\Action\MgModel.class.php",cli.opt.foldername)
-    #for item in fo.dir_list_folder(os.getcwd(),r'LC_MESSAGES'):
-    #  print item
-  except IndexError,Error:
-    print Error
-    pass
+    try:
+        cruentpath = ephpdoclib.folder().getCurrentPath() 
+        gettext.install('lang', cruentpath + '\locale', unicode=False)
+        gettext.translation('lang', cruentpath + '\language', languages=['zh-CN']).install(True)
+        print _('Current Version is') + '0.0.1!'
+        print _('Ephpdoc is tool for php that is the function of the PHP inside comments compiled into an HTML document.') 
+        
+#        fo = ephpdoclib.folder()
+#        for item in  fo.dir_list_allfolder(os.getcwd()):
+#            print item
+        cli = ephpdoclib.cli()
+        #print cli.opt.foldername
+        ephpdocfile = ephpdoclib.ephpdocfile()
+        ephpdocfile.openFile(".\Action\MgModel.class.php", cli.opt.foldername)
+        #for item in fo.dir_list_folder(os.getcwd(),r'LC_MESSAGES'):
+        #  print item
+    except IndexError, Error:
+        print Error
+        pass
   
 
 
