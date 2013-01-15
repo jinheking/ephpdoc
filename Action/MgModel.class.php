@@ -258,4 +258,11 @@ class MgModel{
 		return $this->database->command(array("distinct" => $this->recordset->getName(), "key" => $distinct_key));
 		
 	}
+	
+	/**
+	 * 
+	 */
+	 private function ggg(){
+	 	
+	 }
 }

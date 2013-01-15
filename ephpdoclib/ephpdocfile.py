@@ -24,7 +24,16 @@ class ephpdocfile:
             content=r'<ul id="menu">'+my.group('body')+newStr+r'</ul>'
             result, number = re.subn(reg, content, sourceStr) 
             return result
-
+    
+    def nl2br(self,string, is_xhtml= True ):
+        """
+        替换nl
+        """
+        if is_xhtml:
+            return string.replace('\n','<br />\n')
+        else :
+            return string.replace('\n','<br>\n')
+    
     def openFile(self,filename,foldname):
         '''
         文件打开
@@ -49,15 +58,34 @@ class ephpdocfile:
         for my in m:
             #print my.strip()
             strcontent=strcontent[strcontent.find(my.strip(),0)+len(my.strip()):]
-            tmp= re.findall(r'/\*\*.*?\*/',strcontent, re.S | re.I) 
+            tmp= re.findall(r'/\*\*.*?\*/\s+class',strcontent, re.S | re.I) 
             for t in tmp:
-                file_target.writelines(t.encode("utf-8"))
+                file_target.writelines(self.nl2br(t.encode("utf-8")[:-5])+"<br />\r\n")
                 #print type(t)
-            file_target.writelines(r'<ul id="menu">'+my.strip())
+            file_target.writelines(r'<ul id="menu">')
+            m_fun= re.findall(r'\r\s+([a-z]{1,})\s+function\s+(.*?)\s*\(.*?\)',strcontent, re.S | re.I)
+            dict_fun={}
+            for mm in m_fun:
+                dict_fun[mm[1].strip()]=mm[0].strip()
+#                file_target.writelines(r'<li>'+mm[1].strip()+r'</li>')
+                #print mm.strip()
+#            print dict_fun
             m_fun= re.findall(r'function\s+(.*?)\s*\(.*?\)',strcontent, re.S | re.I)
             for mm in m_fun:
-                file_target.writelines(r'<li>'+mm.strip()+r'</li>')
-                #print mm.strip()
+                key=mm.strip()
+#                print key
+                if key in dict_fun:
+                    pass
+                else:
+                    dict_fun[key]='protected'
+#                    file_target.writelines(r'<li>'+mm.strip()+r'</li>')
+#            dict_fun=sorted(dict_fun.iteritems(), key=lambda asd:asd[1], reverse = False )
+            list_fun=[]
+            for fun in dict_fun:
+                list_fun.append(fun)
+            list_fun.sort()
+            for l in list_fun:
+                file_target.writelines(r'<li><a href="#'+l+'">'+l+r'</a></li>')
             file_target.writelines(r'</ul>')
         file_target.close();
 
