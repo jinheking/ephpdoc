@@ -80,12 +80,12 @@ class MgModel{
 		$this->database=$this->db->selectDB($strdb);
 		return $this->database;
 	}
+	/**
+	 * 插入数据
+	 * @param $arr array  保存数据
+	 * @return 无
+	 */
 	function save($arr){
-		/**
-		 * 插入数据
-		 * @param $arr array  保存数据
-		 * @return 无
-		 */
 		$this->recordset->insert($arr);
 	}
 	/**
@@ -96,7 +96,6 @@ class MgModel{
 	 * safe 是否返回操作结果信息
 	 */
 	public function batchInsert($arr){
-		
 		return $this->recordset->batchInsert($arr,array('safe'=>true));
 	}
 	/**
